@@ -1,0 +1,1 @@
+compile file di dalam folder "main_protection"

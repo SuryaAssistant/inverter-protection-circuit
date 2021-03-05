@@ -4,9 +4,7 @@
    Reading current through ACS712ELCTR-30A-T
 
    Last update : 5 Maret 2021
-
 */
-
 
 #define VBAT_PIN A0
 #define CURRENT_PIN A1
@@ -19,7 +17,6 @@
 //Voltage from voltage divider battery (A0)
 int input_battery;
 double battery_voltage;
-
 
 unsigned int x = 0;
 float AcsValue = 0.0, Samples = 0.0, AvgAcs = 0.0, AcsValueF = 0.0;
@@ -45,7 +42,12 @@ void loop() {
   }
 
   read_acs();
-
+  if (AcsValueF > 20) {
+    digitalWrite(CPROTEC_PIN, LOW);
+  }
+  if (AcsValueF <= 20) {
+    digitalWrite(CPROTEC_PIN, HIGH);
+  }
 
   print_data();
 
